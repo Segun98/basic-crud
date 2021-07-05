@@ -40,7 +40,7 @@ export const CustomerTable = () => {
   );
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customer table">
           <TableHead>
@@ -57,7 +57,7 @@ export const CustomerTable = () => {
           </TableHead>
           <TableBody>
             {loading && !error && (
-              <div className="text-center">
+              <div className="spinner">
                 <CircularProgress />
               </div>
             )}
