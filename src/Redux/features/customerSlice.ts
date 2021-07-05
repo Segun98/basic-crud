@@ -16,12 +16,14 @@ export interface CustomerState {
 export interface InitialState {
   loading: boolean;
   error: boolean;
+  success: boolean;
   data: null | Array<CustomerState>;
 }
 
 const initialState: InitialState = {
   loading: false,
   error: false,
+  success: false,
   data: [],
 };
 
@@ -42,6 +44,9 @@ export const customerSlice = createSlice({
     errorIndicator: (state, action) => {
       state.error = action.payload;
     },
+    successIndicator: (state) => {
+      state.success = true;
+    },
   },
 });
 
@@ -52,6 +57,7 @@ export const {
   deleteCustomer,
   loadingIndicator,
   errorIndicator,
+  successIndicator,
 } = customerSlice.actions;
 
 //Thunks
@@ -68,6 +74,7 @@ export function createCustomerThunk(data: CustomerState) {
         }
       );
 
+      dispatch(successIndicator());
       dispatch(getCustomersThunk());
     } catch (err) {
       dispatch(errorIndicator(true));
@@ -101,10 +108,23 @@ export function getCustomersThunk() {
 //     };
 //   }
 
-//   export function deleteCustomerThunk(){
-//     return async (dispatch) => {
+export function deleteCustomerThunk(id: string) {
+  return async (dispatch: any) => {
+    try {
+      dispatch(errorIndicator(false));
+      dispatch(loadingIndicator(true));
 
-//     };
-//   }
+      await axios.delete(
+        `https://crudcrud.com/api/08359a558a744313b6a4ff6fc839d1dc/customers/${id}`
+      );
+
+      dispatch(successIndicator());
+      dispatch(getCustomersThunk());
+    } catch (err) {
+      dispatch(errorIndicator(true));
+      dispatch(loadingIndicator(false));
+    }
+  };
+}
 
 export default customerSlice.reducer;

@@ -78,7 +78,7 @@ export const CustomerTable = () => {
                   <TableCell align="left">{row.data.hobby}</TableCell>
                   <TableCell align="left">
                     <EditCustomerButton text="Edit" />
-                    <DeleteCustomerButton text="Del" />
+                    <DeleteCustomerButton text="Del" id={row._id} />
                   </TableCell>
                 </TableRow>
               ))}
