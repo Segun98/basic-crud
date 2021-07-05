@@ -19,7 +19,9 @@ export const DeleteCustomerButton = ({
   );
 
   const handleDelete = () => {
-    dispatch(deleteCustomerThunk(id));
+    if (window.confirm("Are you sure you wanna delete this record?")) {
+      dispatch(deleteCustomerThunk(id));
+    }
   };
   return (
     <Button
