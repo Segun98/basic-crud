@@ -60,11 +60,13 @@ export const AddCustomerButton = ({ text }: { text: string }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   //submit form
   const onSubmit = (data: any) => {
     dispatch(createCustomerThunk(data));
+    reset();
     setOpen(false);
   };
 
