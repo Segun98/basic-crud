@@ -63,10 +63,10 @@ export const CustomerTable = () => {
             )}
             {data &&
               data.length > 0 &&
-              data.map((row) => (
+              data.map((row, i) => (
                 <TableRow key={row._id}>
                   <TableCell component="th" scope="row">
-                    {row._id}
+                    {i + 1}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {row.data.firstName}
