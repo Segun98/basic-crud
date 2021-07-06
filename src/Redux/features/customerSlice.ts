@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 
-const baseUrl = "https://crudcrud.com/api/638e778d64794cbeb0d9820e76389912";
+const baseUrl = "https://crudcrud.com/api/f6101fd7831243368203f849e644129f";
 // const baseUrl = "";
 export interface CustomerState {
   _id: string;
