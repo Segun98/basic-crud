@@ -1,5 +1,5 @@
 .App {
-  margin: 30vh auto;
+  margin: 20vh auto;
   width: 95%;
 }
 
@@ -25,11 +25,12 @@
 .download-add-btns {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 @media only screen and (min-width: 700px) {
   .App {
     margin: 30vh auto;
-    width: 80%;
+    width: 85%;
   }
 }

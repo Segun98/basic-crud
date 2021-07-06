@@ -143,6 +143,7 @@ export const AddCustomerButton = ({ text }: { text: string }) => {
                   id="email"
                   aria-describedby="Email"
                   type="email"
+                  required
                   {...register("email", { required: true })}
                 />
               </div>
@@ -198,12 +199,14 @@ export const AddCustomerButton = ({ text }: { text: string }) => {
                 </div>
               </div>
             </FormControl>
-            {error && <div className="error">"An error occured"</div>}
+            {error && (
+              <div className="error text-center">"An error occured"</div>
+            )}
             <Button
-              onClick={handleSubmit(onSubmit)}
               variant="contained"
               color="primary"
               disabled={loading}
+              type="submit"
             >
               Add Customer
             </Button>

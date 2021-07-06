@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 
+const baseUrl = "https://crudcrud.com/api/638e778d64794cbeb0d9820e76389912";
+// const baseUrl = "";
 export interface CustomerState {
   _id: string;
   data: {
-    firstName: String;
-    lastName: String;
-    email: String;
-    phone: String;
-    location: String;
-    hobby: String;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    location: string;
+    hobby: string;
   };
 }
 
@@ -67,12 +69,9 @@ export function createCustomerThunk(data: CustomerState) {
       dispatch(errorIndicator(false));
       dispatch(loadingIndicator(true));
 
-      await axios.post(
-        "https://crudcrud.com/api/08359a558a744313b6a4ff6fc839d1dc/customers",
-        {
-          data,
-        }
-      );
+      await axios.post(`${baseUrl}/customers`, {
+        data,
+      });
 
       dispatch(successIndicator());
       dispatch(getCustomersThunk());
@@ -90,7 +89,7 @@ export function getCustomersThunk() {
       dispatch(loadingIndicator(true));
 
       const res: AxiosResponse<CustomerState> = await axios.get(
-        "https://crudcrud.com/api/08359a558a744313b6a4ff6fc839d1dc/customers"
+        `${baseUrl}/customers`
       );
 
       dispatch(getCustomers(res.data));
@@ -102,11 +101,27 @@ export function getCustomersThunk() {
   };
 }
 
-//   export function updateCustomerThunk() {
-//     return async (dispatch) => {
+export function updateCustomerThunk(data: CustomerState) {
+  return async (dispatch: any) => {
+    try {
+      dispatch(errorIndicator(false));
+      dispatch(loadingIndicator(true));
 
-//     };
-//   }
+      await axios.put(`${baseUrl}/customers/${data._id}`, {
+        // _id: data._id,
+        data: {
+          ...data.data,
+        },
+      });
+
+      dispatch(successIndicator());
+      dispatch(getCustomersThunk());
+    } catch (err) {
+      dispatch(errorIndicator(true));
+      dispatch(loadingIndicator(false));
+    }
+  };
+}
 
 export function deleteCustomerThunk(id: string) {
   return async (dispatch: any) => {
@@ -114,9 +129,7 @@ export function deleteCustomerThunk(id: string) {
       dispatch(errorIndicator(false));
       dispatch(loadingIndicator(true));
 
-      await axios.delete(
-        `https://crudcrud.com/api/08359a558a744313b6a4ff6fc839d1dc/customers/${id}`
-      );
+      await axios.delete(`${baseUrl}/customers/${id}`);
 
       dispatch(successIndicator());
       dispatch(getCustomersThunk());

@@ -77,7 +77,7 @@ export const CustomerTable = () => {
                   <TableCell align="left">{row.data.location}</TableCell>
                   <TableCell align="left">{row.data.hobby}</TableCell>
                   <TableCell align="left">
-                    <EditCustomerButton text="Edit" />
+                    <EditCustomerButton text="Edit" data={row} />
                     <DeleteCustomerButton text="Del" id={row._id} />
                   </TableCell>
                 </TableRow>
@@ -87,7 +87,7 @@ export const CustomerTable = () => {
       </TableContainer>
 
       <section className="download-add-btns">
-        <DownloadCsvButton text="Download CSV" />
+        <DownloadCsvButton text="Download CSV" data={data} />
         <AddCustomerButton text="Add Customer" />
       </section>
     </div>
