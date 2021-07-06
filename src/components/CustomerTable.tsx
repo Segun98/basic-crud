@@ -87,7 +87,9 @@ export const CustomerTable = () => {
       </TableContainer>
 
       <section className="download-add-btns">
-        <DownloadCsvButton text="Download CSV" data={data} />
+        {data && data.length > 0 && (
+          <DownloadCsvButton text="Download CSV" data={data} />
+        )}
         <AddCustomerButton text="Add Customer" />
       </section>
     </div>
