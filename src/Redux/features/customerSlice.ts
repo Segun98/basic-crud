@@ -37,9 +37,6 @@ export const customerSlice = createSlice({
       //@ts-ignore
       state.data = action.payload;
     },
-    updateCustomer: (state, action: PayloadAction<CustomerState>) => {},
-    deleteCustomer: (state, action: PayloadAction<{ id: string }>) => {},
-
     loadingIndicator: (state, action) => {
       state.loading = action.payload;
     },
@@ -55,8 +52,6 @@ export const customerSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   getCustomers,
-  updateCustomer,
-  deleteCustomer,
   loadingIndicator,
   errorIndicator,
   successIndicator,
